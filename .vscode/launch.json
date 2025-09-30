@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Index",
+            "request": "launch",
+            "mainClass": "Index",
+            "projectName": "TestPro_74b184f7"
+        },
+        {
+            "type": "java",
+            "name": "Sort",
+            "request": "launch",
+            "mainClass": "Sort",
+            "projectName": "TestPro_74b184f7"
+        },
+        {
+             "type": "go",
+        }
+    ]
+}

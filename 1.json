@@ -1,0 +1,649 @@
+{
+    "devBasicId": 1223501,
+    "taskId": 31564649,
+    "taskName": "DevDevelopStageSelfTestTask",
+    "params": {
+        "selectedProjects": [
+            {
+                "controlPanel": 1,
+                "deployTarget": {
+                    "projectType": 1,
+                    "projectName": "life.jiaqi.bits_demo",
+                    "projectUniqueId": "life.jiaqi.bits_demo"
+                },
+                "artifact": {
+                    "type": 1,
+                    "scmArtifacts": [
+                        {
+                            "scmId": 667,
+                            "scmName": "toutiao/load",
+                            "isMain": false,
+                            "pubBase": 1,
+                            "revision": "",
+                            "gitRepoName": "toutiao/load",
+                            "version": "",
+                            "targetCommitHash": "",
+                            "gitRepoId": "503623"
+                        },
+                        {
+                            "scmId": 631,
+                            "scmName": "toutiao/runtime",
+                            "isMain": false,
+                            "pubBase": 1,
+                            "revision": "",
+                            "gitRepoName": "toutiao/runtime",
+                            "version": "",
+                            "targetCommitHash": "",
+                            "gitRepoId": "503626"
+                        },
+                        {
+                            "scmId": 441834,
+                            "scmName": "toutiao/life/jiaqi_bits_demo",
+                            "isMain": true,
+                            "pubBase": 2,
+                            "revision": "test0304",
+                            "gitRepoName": "life/jiaqi_bits_demo",
+                            "targetCommitHash": "b00a5201fdb8e62394ecf266ac70a72e3eb1c949",
+                            "gitRepoId": "774005"
+                        }
+                    ]
+                }
+            }
+        ],
+        "selectedControlPlane": 1,
+        "customVar": [
+            {
+                "definition": {
+                    "name": "ate_branch",
+                    "kind": 3,
+                    "shortDesc": {
+                        "value": "ATE左移分支，未左移默认master，由QA填写和使用，RD同学可以不用关注",
+                        "cn": "ATE左移分支，未左移默认master，由QA填写和使用，RD同学可以不用关注",
+                        "en": "",
+                        "lang": "zh",
+                        "texts": {
+                            "zh": "ATE左移分支，未左移默认master，由QA填写和使用，RD同学可以不用关注",
+                            "en": "ATE左移分支，未左移默认master，由QA填写和使用，RD同学可以不用关注"
+                        },
+                        "starlingKey": ""
+                    },
+                    "longDesc": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "defaultValue": {
+                        "text": "master",
+                        "rawJson": "master"
+                    },
+                    "fullName": "custom.ate_branch",
+                    "sensitive": false,
+                    "needLoadWhenRender": false,
+                    "groupId": "20328534531330",
+                    "citedBys": [],
+                    "associationItems": [
+                        {
+                            "type": 3,
+                            "detail": {
+                                "devTask": {
+                                    "workflowId": 7984
+                                }
+                            }
+                        }
+                    ],
+                    "version": "41",
+                    "customScope": 3,
+                    "groupName": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "uiOption": {
+                        "inputType": 1,
+                        "options": [],
+                        "newOptions": [],
+                        "required": false,
+                        "final": false
+                    },
+                    "deprecated": false
+                },
+                "value": {
+                    "text": "master",
+                    "rawJson": "master"
+                },
+                "associationItems": [
+                    {
+                        "type": 3,
+                        "detail": {
+                            "devTask": {
+                                "workflowId": 7984
+                            }
+                        }
+                    }
+                ],
+                "groupId": "20328534531330",
+                "version": "41",
+                "customScope": 3,
+                "groupName": {
+                    "value": "",
+                    "cn": "",
+                    "en": "",
+                    "lang": "",
+                    "texts": null,
+                    "starlingKey": ""
+                }
+            },
+            {
+                "definition": {
+                    "name": "need_auto_test",
+                    "kind": 3,
+                    "shortDesc": null,
+                    "longDesc": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "defaultValue": {
+                        "text": "true",
+                        "rawJson": "true"
+                    },
+                    "fullName": "custom.need_auto_test",
+                    "sensitive": false,
+                    "needLoadWhenRender": false,
+                    "groupId": "20328534531330",
+                    "citedBys": [],
+                    "associationItems": [
+                        {
+                            "type": 3,
+                            "detail": {
+                                "devTask": {
+                                    "workflowId": 7984
+                                }
+                            }
+                        }
+                    ],
+                    "version": "41",
+                    "customScope": 3,
+                    "groupName": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "uiOption": {
+                        "inputType": 2,
+                        "options": [],
+                        "newOptions": [
+                            {
+                                "name": "false",
+                                "label": "禁用自动化"
+                            },
+                            {
+                                "name": "true",
+                                "label": "运行自动化"
+                            }
+                        ],
+                        "required": false,
+                        "final": false
+                    },
+                    "deprecated": false
+                },
+                "value": {
+                    "text": "true",
+                    "rawJson": "true"
+                },
+                "associationItems": [
+                    {
+                        "type": 3,
+                        "detail": {
+                            "devTask": {
+                                "workflowId": 7984
+                            }
+                        }
+                    }
+                ],
+                "groupId": "20328534531330",
+                "version": "41",
+                "customScope": 3,
+                "groupName": {
+                    "value": "",
+                    "cn": "",
+                    "en": "",
+                    "lang": "",
+                    "texts": null,
+                    "starlingKey": ""
+                }
+            },
+            {
+                "definition": {
+                    "name": "tce_scm_use_cache",
+                    "kind": 3,
+                    "shortDesc": {
+                        "value": "TCE SCM编译原子是否使用编译缓存",
+                        "cn": "TCE SCM编译原子是否使用编译缓存",
+                        "en": "",
+                        "lang": "zh",
+                        "texts": {
+                            "zh": "TCE SCM编译原子是否使用编译缓存",
+                            "en": "TCE SCM编译原子是否使用编译缓存"
+                        },
+                        "starlingKey": ""
+                    },
+                    "longDesc": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "defaultValue": {
+                        "text": "true",
+                        "rawJson": "true"
+                    },
+                    "fullName": "custom.tce_scm_use_cache",
+                    "sensitive": false,
+                    "needLoadWhenRender": false,
+                    "groupId": "20328534531330",
+                    "citedBys": [],
+                    "associationItems": [
+                        {
+                            "type": 3,
+                            "detail": {
+                                "devTask": {
+                                    "workflowId": 7984
+                                }
+                            }
+                        }
+                    ],
+                    "version": "41",
+                    "customScope": 3,
+                    "groupName": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "uiOption": {
+                        "inputType": 2,
+                        "options": [],
+                        "newOptions": [
+                            {
+                                "name": "true",
+                                "label": ""
+                            },
+                            {
+                                "name": "false",
+                                "label": ""
+                            }
+                        ],
+                        "required": false,
+                        "final": false
+                    },
+                    "deprecated": false
+                },
+                "value": {
+                    "text": "true",
+                    "rawJson": "true"
+                },
+                "associationItems": [
+                    {
+                        "type": 3,
+                        "detail": {
+                            "devTask": {
+                                "workflowId": 7984
+                            }
+                        }
+                    }
+                ],
+                "groupId": "20328534531330",
+                "version": "41",
+                "customScope": 3,
+                "groupName": {
+                    "value": "",
+                    "cn": "",
+                    "en": "",
+                    "lang": "",
+                    "texts": null,
+                    "starlingKey": ""
+                }
+            },
+            {
+                "definition": {
+                    "name": "deploy_auto_test_trigger",
+                    "kind": 1,
+                    "shortDesc": {
+                        "value": "开发阶段是否默认执行自动化",
+                        "cn": "开发阶段是否默认执行自动化",
+                        "en": "",
+                        "lang": "zh",
+                        "texts": {
+                            "zh": "开发阶段是否默认执行自动化",
+                            "en": "开发阶段是否默认执行自动化"
+                        },
+                        "starlingKey": ""
+                    },
+                    "longDesc": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "defaultValue": {
+                        "boolean": false,
+                        "rawJson": "false"
+                    },
+                    "fullName": "custom.deploy_auto_test_trigger",
+                    "sensitive": false,
+                    "deprecated": false,
+                    "needLoadWhenRender": false,
+                    "uiOption": {
+                        "inputType": 1,
+                        "options": [],
+                        "required": false,
+                        "final": true
+                    }
+                },
+                "value": {
+                    "boolean": false,
+                    "rawJson": "false"
+                },
+                "groupId": "20378118242050",
+                "version": "3",
+                "associationItems": [
+                    {
+                        "type": 1,
+                        "detail": {
+                            "project": {
+                                "projectUniqueId": "life.jiaqi.bits_demo",
+                                "projectType": 1,
+                                "projectName": "life.jiaqi.bits_demo"
+                            }
+                        }
+                    }
+                ],
+                "groupName": {
+                    "value": "",
+                    "cn": "",
+                    "en": "",
+                    "lang": "",
+                    "texts": null,
+                    "starlingKey": ""
+                },
+                "customScope": 7
+            },
+            {
+                "definition": {
+                    "name": "need_ate_bloeck",
+                    "kind": 3,
+                    "shortDesc": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "longDesc": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "defaultValue": {
+                        "text": "1",
+                        "rawJson": "1"
+                    },
+                    "fullName": "custom.need_ate_bloeck",
+                    "sensitive": false,
+                    "deprecated": false,
+                    "needLoadWhenRender": false,
+                    "uiOption": {
+                        "inputType": 2,
+                        "options": [],
+                        "required": false,
+                        "final": true,
+                        "newOptions": [
+                            {
+                                "name": "0",
+                                "label": "不阻塞"
+                            },
+                            {
+                                "name": "1",
+                                "label": "阻塞"
+                            }
+                        ]
+                    }
+                },
+                "value": {
+                    "text": "1",
+                    "rawJson": "1"
+                },
+                "groupId": "20373945459458",
+                "version": "8",
+                "associationItems": [
+                    {
+                        "type": 1,
+                        "detail": {
+                            "project": {
+                                "projectUniqueId": "life.jiaqi.bits_demo",
+                                "projectType": 1,
+                                "projectName": "life.jiaqi.bits_demo"
+                            }
+                        }
+                    }
+                ],
+                "groupName": {
+                    "value": "",
+                    "cn": "",
+                    "en": "",
+                    "lang": "",
+                    "texts": null,
+                    "starlingKey": ""
+                },
+                "customScope": 7
+            },
+            {
+                "definition": {
+                    "name": "need_life_service_safety",
+                    "kind": 3,
+                    "shortDesc": {
+                        "value": "生活服务安全原子是否运行变量",
+                        "cn": "生活服务安全原子是否运行变量",
+                        "en": "",
+                        "lang": "zh",
+                        "texts": {
+                            "zh": "生活服务安全原子是否运行变量",
+                            "en": "生活服务安全原子是否运行变量"
+                        },
+                        "starlingKey": ""
+                    },
+                    "longDesc": {
+                        "value": "",
+                        "cn": "",
+                        "en": "",
+                        "lang": "",
+                        "texts": null,
+                        "starlingKey": ""
+                    },
+                    "defaultValue": {
+                        "text": "false",
+                        "rawJson": "false"
+                    },
+                    "fullName": "custom.need_life_service_safety",
+                    "sensitive": false,
+                    "deprecated": false,
+                    "needLoadWhenRender": false,
+                    "uiOption": {
+                        "inputType": 2,
+                        "options": [],
+                        "required": false,
+                        "final": true,
+                        "newOptions": [
+                            {
+                                "name": "false",
+                                "label": "不执行生活服务安全原子"
+                            },
+                            {
+                                "name": "true",
+                                "label": "执行生活服务安全原子"
+                            }
+                        ]
+                    }
+                },
+                "value": {
+                    "text": "false",
+                    "rawJson": "false"
+                },
+                "groupId": "20373945459458",
+                "version": "8",
+                "associationItems": [
+                    {
+                        "type": 1,
+                        "detail": {
+                            "project": {
+                                "projectUniqueId": "life.jiaqi.bits_demo",
+                                "projectType": 1,
+                                "projectName": "life.jiaqi.bits_demo"
+                            }
+                        }
+                    }
+                ],
+                "groupName": {
+                    "value": "",
+                    "cn": "",
+                    "en": "",
+                    "lang": "",
+                    "texts": null,
+                    "starlingKey": ""
+                },
+                "customScope": 7
+            }
+        ],
+        "envProjectConfigs": [
+            {
+                "controlPlane": 1,
+                "projectName": "life.jiaqi.bits_demo",
+                "projectType": 1,
+                "projectUniqueId": "life.jiaqi.bits_demo",
+                "tceProjectConfig": {
+                    "clusters": [
+                        {
+                            "name": "default",
+                            "zone": "BOE-Arbutus",
+                            "virtualCluster": "Arbutus/ipv6",
+                            "dcInfos": [
+                                {
+                                    "idc": "arbutus",
+                                    "count": 1
+                                }
+                            ],
+                            "cpu": 1,
+                            "mem": 2,
+                            "existed": true
+                        }
+                    ],
+                    "laneType": "boe_env_",
+                    "laneId": "6042182203",
+                    "overwritePrefix": "boe_",
+                    "enableHotDeploy": true,
+                    "enablePpeDebug": false,
+                    "envTypes": []
+                }
+            },
+            {
+                "controlPlane": 1,
+                "projectName": "life.jiaqi.bits_demo",
+                "projectType": 1,
+                "projectUniqueId": "life.jiaqi.bits_demo",
+                "tceProjectConfig": {
+                    "clusters": [
+                        {
+                            "name": "default",
+                            "zone": "China-North-LF",
+                            "virtualCluster": "PPE/ipv6",
+                            "dcInfos": [
+                                {
+                                    "idc": "LF",
+                                    "count": 1
+                                }
+                            ],
+                            "cpu": 1,
+                            "mem": 2,
+                            "existed": true
+                        }
+                    ],
+                    "laneType": "ppe_cn_env_",
+                    "laneId": "6042182203",
+                    "overwritePrefix": "ppe_",
+                    "singleDcDeployment": {
+                        "isSingleDcDeployment": false,
+                        "idc": ""
+                    },
+                    "enableHotDeploy": true,
+                    "enablePpeDebug": false,
+                    "envTypes": []
+                }
+            }
+        ],
+        "autoTrigger": false,
+        "env": {
+            "boe": {
+                "enabled": true,
+                "lanes": [
+                    {
+                        "laneId": "6042182203",
+                        "disableDeploy": false,
+                        "laneType": "boe_env_",
+                        "envTypes": [],
+                        "overwritePrefix": "boe_",
+                        "env": "boe",
+                        "enableHotDeploy": true,
+                        "laneGcStrategy": 1,
+                        "stageId": 239437,
+                        "stageName": "自测"
+                    }
+                ]
+            },
+            "ppe": {
+                "enabled": true,
+                "lanes": [
+                    {
+                        "laneId": "6042182203",
+                        "disableDeploy": false,
+                        "laneType": "ppe_cn_env_",
+                        "envTypes": [],
+                        "overwritePrefix": "ppe_",
+                        "env": "ppe",
+                        "enableHotDeploy": false,
+                        "laneGcStrategy": 1,
+                        "singleDcDeployment": {
+                            "isSingleDcDeployment": false,
+                            "idc": ""
+                        },
+                        "stageId": 239437,
+                        "stageName": "自测"
+                    }
+                ]
+            }
+        }
+    },
+    "spaceId": 325918412802
+}
