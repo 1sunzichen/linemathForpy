@@ -15,7 +15,7 @@ type GoroutinePool struct {
 	errorChan chan error
 }
 
-// NewPool 创建协程池 size: 并发数量 errorBuffer: 错误缓冲大小
+// NewPool creates a goroutine pool, size: concurrency count, errorBuffer: error buffer size
 func NewPool(size, errorBuffer int) *GoroutinePool {
 	return &GoroutinePool{
 		taskChan:  make(chan Task, size*2),
@@ -25,7 +25,7 @@ func NewPool(size, errorBuffer int) *GoroutinePool {
 	}
 }
 
-// Submit 提交任务（带超时机制）
+// Submit submits a task (with timeout mechanism)
 func (p *GoroutinePool) Submit(task Task, timeout time.Duration) bool {
 	select {
 	case p.taskChan <- task:
@@ -37,7 +37,7 @@ func (p *GoroutinePool) Submit(task Task, timeout time.Duration) bool {
 	}
 }
 
-// Run 启动工作协程
+// Run starts worker goroutines
 func (p *GoroutinePool) Run() {
 	for {
 		select {
@@ -62,24 +62,24 @@ func (p *GoroutinePool) Run() {
 	}
 }
 
-// Shutdown 优雅关闭
+// Shutdown gracefully shuts down
 func (p *GoroutinePool) Shutdown() {
 	close(p.stopChan)
 	p.wg.Wait()
 	close(p.errorChan)
 }
 
-// Errors 获取错误通道
+// Errors returns the error channel
 func (p *GoroutinePool) Errors() <-chan error {
 	return p.errorChan
 }
 
-// 使用示例
+// Usage example
 func main() {
 	pool := NewPool(10, 100)
 	go pool.Run()
 
-	// 提交任务
+	// Submit task
 	for i := 0; i < 100; i++ {
 		id := i
 		pool.Submit(func() error {
@@ -89,7 +89,7 @@ func main() {
 		}, time.Second)
 	}
 
-	// 处理错误
+	// Handle errors
 	go func() {
 		for err := range pool.Errors() {
 			println("task error:", err.Error())

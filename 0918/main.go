@@ -9,11 +9,11 @@ import (
 	"strings"
 )
 
-// 文件内容排序
+// File content sorting
 
-// 针对文件内容进行排序，
-// 先按照每行的第一列按字典序升序，
-// 遇到相同的按照第二列按数值降序
+// Sort file content,
+// First sort by column 1 in lexicographic ascending order,
+// For ties, sort by column 2 in numeric descending order
 
 // Demo：
 
@@ -22,7 +22,7 @@ import (
 // sj 445
 // ritu 56
 
-// 转化后：
+// After transformation:
 
 // ritu 56
 // sj 445
@@ -52,9 +52,9 @@ func main() {
 
 	sort.Slice(rows, func(i, j int) bool {
 		if rows[i].col1 == rows[j].col1 {
-			return rows[i].col2 > rows[j].col2 // 第二列数值降序
+			return rows[i].col2 > rows[j].col2 // Column 2 numeric descending
 		}
-		return rows[i].col1 < rows[j].col1 // 第一列字典序升序
+		return rows[i].col1 < rows[j].col1 // Column 1 lexicographic ascending
 	})
 
 	for _, r := range rows {

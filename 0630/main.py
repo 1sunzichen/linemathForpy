@@ -16,7 +16,7 @@ def call_psm_api():
             timeout=5
         )
         
-        # 处理嵌套数据结构
+        # Process nested data structure
         result = {
             "code": 200,
             "data": {

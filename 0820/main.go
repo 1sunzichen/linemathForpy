@@ -15,7 +15,7 @@ type JWTPayload struct {
 	Exp  int64  `json:"exp"`      // Expiration Time
 }
 
-// parseJwtToStruct 解析JWT到结构体，返回是否成功
+// parseJwtToStruct parses JWT into struct, returns success status
 func ParseJwtToStruct(token string, payload *JWTPayload) bool {
 	defer func() {
 		if r := recover(); r != nil {
@@ -23,21 +23,21 @@ func ParseJwtToStruct(token string, payload *JWTPayload) bool {
 		}
 	}()
 
-	// 分割token
+	// Split token
 	parts := strings.Split(token, ".")
 	if len(parts) != 3 {
 		fmt.Println("jwt parse error: invalid token format")
 		return false
 	}
 
-	// 获取payload部分
+	// Get payload part
 	base64Url := parts[1]
 
-	// 替换URL安全的base64字符
+	// Replace URL-safe base64 characters
 	base64Str := strings.ReplaceAll(base64Url, "-", "+")
 	base64Str = strings.ReplaceAll(base64Str, "_", "/")
 
-	// 添加padding
+	// Add padding
 	switch len(base64Str) % 4 {
 	case 2:
 		base64Str += "=="
@@ -45,14 +45,14 @@ func ParseJwtToStruct(token string, payload *JWTPayload) bool {
 		base64Str += "="
 	}
 
-	// Base64解码
+	// Base64 decode
 	decoded, err := base64.StdEncoding.DecodeString(base64Str)
 	if err != nil {
 		fmt.Printf("jwt parse error: %v\n", err)
 		return false
 	}
 
-	// JSON解析到结构体
+	// Parse JSON into struct
 	err = json.Unmarshal(decoded, payload)
 	if err != nil {
 		fmt.Printf("jwt parse error: %v\n", err)

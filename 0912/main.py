@@ -1,20 +1,20 @@
 
 def extract_psm(raw_list):
-    """等价于你在 plugin_job.py 里的那一句推导"""
+    """Equivalent to the comprehension in your plugin_job.py"""
     return [
         item['psm'] if isinstance(item, dict) and 'psm' in item else str(item)
         for item in raw_list
     ]
 
-# ---------- 测试用例 ----------
+# ---------- Test cases ----------
 test_cases = [
-    # 正常 dict
+    # Normal dict
     [{'psm': 'life.a', 'revision': 'r1'}, {'psm': 'life.b', 'revision': 'r2'}],
-    # 缺 psm 字段
+    # Missing psm field
     [{'revision': 'r3'}, {'psm': 'life.c'}],
-    # 混 dict / 字符串 / 其它类型
+    # Mixed dict / string / other types
     [{'psm': 'life.d'}, 'life.e', 123, {'psm': 'life.f'}],
-    # 空列表
+    # Empty list
     [],
 ]
 

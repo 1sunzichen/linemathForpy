@@ -30,10 +30,10 @@ class Vector:
         assert len(self)==len(another), \
             "Error in subtracting. Length of vectors must be same"
         return Vector([a-b for a,b in zip(self,another)]) 
-    # 乘法  向量在左
+    # Multiplication: vector on the left
     def __mul__(self,k):
         return Vector([k*e for e in self])
-    #  乘法 向量在右
+    # Multiplication: vector on the right
     def __rmul__(self,k):
         return self*k
 
@@ -41,7 +41,7 @@ class Vector:
         return (1/k)*self
     def __pos__(self):
         return 1*self
-    # 向量取正
+    # Vector positive
     def __neg__(self):
         return -1*self
     def __iter__(self):
@@ -49,7 +49,7 @@ class Vector:
     def __getitem__(self,index):
         return self._values[index]
     def __len__(self):
-        # 向量长度
+        # Vector length
         return len(self._values)
 
     def __repr__(self):

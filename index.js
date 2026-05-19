@@ -1,10 +1,10 @@
 /**
- * @param params 调用参数，HTTP 请求下为请求体
- * @param context 调用上下文
+ * @param params Call parameters, request body for HTTP requests
+ * @param context Call context
  *
- * @return 函数的返回数据，HTTP 场景下会作为 Response Body
+ * @return Function return data, used as Response Body in HTTP scenarios
  *
- * 完整信息可参考：
+ * Full info can be found at:
  * https://inspirecloud.bytedance.net/docs/cloud-function/basic.html
  */
 const QRCode = require("qrcode");
@@ -47,7 +47,7 @@ let host = BaseHost;
 let ak = '';
 let sk = '';
 
-/** 生成二维码 base64 */
+/** Generate QR code base64 */
 function getQRCodeBase64(qrCodeScheme) {
   return new Promise((resolve) => {
     QRCode.toDataURL(qrCodeScheme, (err, url) => {
@@ -56,7 +56,7 @@ function getQRCodeBase64(qrCodeScheme) {
   });
 }
 
-/** 发送卡片失败的情况下，发送错误消息给触发人 */
+/** When card sending fails, send error message to the trigger user */
 async function sendInitFailMessage(userName, extra) {
   const tenantAccessToken = await getTenantAccessToken();
   const receive_id = await getUserReceiveId(userName);
@@ -172,7 +172,7 @@ async function sendInitFailMessage(userName, extra) {
     contextLog("发送日志失败", e);
   }
 }
-/** 获取receive id */
+/** Get receive id */
 async function getUserReceiveId(userName) {
   const tenantAccessToken = await getTenantAccessToken();
   const info = await fetch(
@@ -194,7 +194,7 @@ async function getUserReceiveId(userName) {
   return receive_id;
 }
 
-/** 发送卡片失败的情况下，发送错误消息给触发人 */
+/** When card sending fails, send error message to the trigger user */
 async function sendErrorMessage(userName, extra) {
   const tenantAccessToken = await getTenantAccessToken();
   const receive_id = await getUserReceiveId(userName);
@@ -311,7 +311,7 @@ async function sendErrorMessage(userName, extra) {
   }
 }
 
-/** 发送信息 */
+/** Send message */
 async function sendCardMessage(trainGroupId, cardData) {
   contextLog("trainGroupId", trainGroupId);
   if (!trainGroupId) {
@@ -346,7 +346,7 @@ async function sendCardMessage(trainGroupId, cardData) {
   }
 }
 
-/** 自建应用获取 tenant_access_token */
+/** Self-built app get tenant_access_token */
 async function getTenantAccessToken() {
   const res = await axios(
     "https://fsopen.bytedance.net/open-apis/auth/v3/tenant_access_token/internal",
@@ -361,7 +361,7 @@ async function getTenantAccessToken() {
   return res.data?.tenant_access_token;
 }
 
-/** 根据 base64，生成 img_key */
+/** Generate img_key from base64 */
 async function getImageKey(base64) {
   try {
     let data = new FormData();
@@ -393,7 +393,7 @@ async function getImageKey(base64) {
 }
 
 function getSignature(PostBody) {
-  // 构造canonicalRequest（最终待加签内容）
+  // Construct canonicalRequest (final content to be signed)
   const httpMethod = "POST";
   const canonicalURI = "/gecko/server/graphql";
   const canonicalQueryString = "";
@@ -406,7 +406,7 @@ function getSignature(PostBody) {
   signingKeyHmac.update(authPrefix);
   const signingKey = signingKeyHmac.digest("hex");
 
-  // 使用signingKey对canonicalRequest进行加签得到最终签名signature
+  // Use signingKey to sign canonicalRequest to get final signature
   const signatureHmac = crypto.createHmac("sha256", signingKey);
   signatureHmac.update(canonicalRequest);
   const signature = signatureHmac.digest("hex");
@@ -501,7 +501,7 @@ async function getGeckoChannelId(package) {
 }
 
 /**
- * 获取每一个gecko资源包信息，从中摘取中部分信息用于生成推送卡片内容
+ * Get each gecko package info, extract partial info for generating push card content
  */
 async function getCardInfo(package) {
   const geckoPackageInfo = await getGeckoPackageInfo(package);
@@ -518,13 +518,13 @@ async function getCardInfo(package) {
   };
 }
 
-/** 获取火车配置的推送群id */
+/** Get push group id from train config */
 function getChatGroupIdList(traingrouplist = []) {
   const FEChatGroupId = "oc_ffe4e047c19114da767fece00f15a138";
   return traingrouplist.filter((i) => i !== FEChatGroupId);
 }
 
-/** 获取meego需求榜单的推送群id */
+/** Get push group id from meego requirement board */
 async function getMeegoGroupChatIdList(sdlcinfo) {
   try {
     const meegoInfo = JSON.parse(JSON.parse(sdlcinfo)).workItem_list;
@@ -543,8 +543,8 @@ async function getMeegoGroupChatIdList(sdlcinfo) {
 }
 
 /** 
- * 初始化环境相关的变量 
- * 判断是不是存储过ak sk
+ * Initialize environment-related variables
+ * Check if ak/sk are stored
  */
 async function initConfig(envlanename, username) {
   const GeckoAkSkTable = inspirecloud.db.table('gecko_ak_sk');
@@ -572,7 +572,7 @@ async function initConfig(envlanename, username) {
 
 }
 
-/** 生成CardData */
+/** Generate CardData */
 async function getLarkCardData(
   projectListParams,
   branch,
@@ -670,7 +670,7 @@ async function getLarkCardData(
   return cardData;
 }
 
-/** 生成 meego 的 plugin_token */
+/** Generate meego plugin_token */
 async function getPluginToken() {
   const fetchUrl = "https://meego.feishu.cn/open_api/authen/plugin_token";
 
@@ -681,7 +681,7 @@ async function getPluginToken() {
     },
     body: JSON.stringify({
       plugin_id: "MII_63EDEC8584E2401C",
-      plugin_secret: "481667763D62D61D9BD78807D186F516",
+      plugin_secret: "YOUR_LARK_PLUGIN_SECRET",
       state: "111",
       type: 0,
     }),
@@ -691,7 +691,7 @@ async function getPluginToken() {
   return data.token;
 }
 
-/** 拉机器人进入meego群，同时获取到meego需求群的 chat_id */
+/** Pull bot into meego group and get chat_id of the meego requirement group */
 async function pullInMeegoGroup(meegoInfo) {
   const { space_key, id, source_type } = meegoInfo;
   contextLog("pullInMeegoGroup", meegoInfo);
@@ -716,14 +716,14 @@ async function pullInMeegoGroup(meegoInfo) {
   return data.chat_id;
 }
 
-/** 自动把机器人拉进所有meego群 */
+/** Automatically pull bot into all meego groups */
 async function pullInAllMeegoGroup(meegoInfo = []) {
   return meegoInfo.map((id) => {
     return pullInMeegoGroup(id);
   });
 }
 
-/** 给所有群发送消息 */
+/** Send message to all groups */
 async function sendAllCardMessage(trainGroupIdList = [], cardData) {
   return trainGroupIdList.map((id) => {
     return sendCardMessage(id, cardData);
@@ -732,14 +732,14 @@ async function sendAllCardMessage(trainGroupIdList = [], cardData) {
 
 module.exports = async function run(params, context) {
   try {
-    // 1. 设置全局日志打印方法
+    // 1. Set global log printing method
     contextLog = context.log;
     contextLog("params", params, context.headers);
 
     const { branch, username, traingrouplist = '[]', envlanename, sdlcinfo } =
       context.headers;
 
-    // 2. 初始化配置信息
+    // 2. Initialize config
     const initSuccess = await initConfig(envlanename, username);
     if (!initSuccess) {
       const sendErrorMessageRes = await sendInitFailMessage(username, {
@@ -750,13 +750,13 @@ module.exports = async function run(params, context) {
       return;
     }
 
-    // 3. 获取推送通知群id
+    // 3. Get push notification group ids
     const messagePushChatGroupList = getChatGroupIdList(
       JSON.parse(traingrouplist)
     );
     const meegoGroupChatIdList = await getMeegoGroupChatIdList(sdlcinfo);
 
-    // todo: 测试群   正式上线后记得去掉
+    // todo: test group, remember to remove after going live
     // const groupIdList = ["oc_739e838a5b0dc4aaf6f43d3c6a6cbd11"];
     const groupIdList = [...messagePushChatGroupList, ...meegoGroupChatIdList];
 
@@ -767,13 +767,13 @@ module.exports = async function run(params, context) {
         meegoGroupChatIdList
       );
     } else {
-      // 如果没有需要通知的群，直接终止
+      // If no groups to notify, terminate directly
       return {
         text: "没有需要推送消息的群"
       };
     }
 
-    // 4. 获取资源包信息
+    // 4. Get package info
     const cardData = await getLarkCardData(
       params,
       branch,
@@ -781,16 +781,16 @@ module.exports = async function run(params, context) {
       envlanename
     );
 
-    // 5. 发送资源包信息到meego绑定的群
+    // 5. Send package info to meego-bound groups
     const sendMeegoMessagePromiseArr = await sendAllCardMessage(
       [...meegoGroupChatIdList],
       cardData
     );
     const sendRes = await Promise.all(sendMeegoMessagePromiseArr);
 
-    // 6. 发送资源包信息到火车绑定的群  后面可能就不需要了。 
-    // 消息推送到火车榜单群失败很正常，因为大家没手动拉机器人入群。
-    // 所以这种失败，不要走到外层走重试逻辑
+    // 6. Send package info to train-bound groups, may not be needed later.
+    // Message push failure to train groups is normal, since no one manually added the bot.
+    // So for this kind of failure, do not trigger outer retry logic
     try {
       const sendTraninMessagePromiseArr = await sendAllCardMessage(
         [...messagePushChatGroupList, 'oc_739e838a5b0dc4aaf6f43d3c6a6cbd11'],
@@ -805,7 +805,7 @@ module.exports = async function run(params, context) {
     contextLog("sendAllCardMessage err", error);
     const last = await sendErrorMessage(context.headers.username, { params, headers: context.headers, error, retryTimes });
 
-    // 失败重试一次
+    // Retry once on failure
     if (retryTimes < 1) {
       retryTimes++
       await run(params, context)
